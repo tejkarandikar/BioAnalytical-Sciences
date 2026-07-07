@@ -1,4 +1,4 @@
-package tejapps.bioanalytical.preferences
+package tejapps.bioanalytical
 
 import android.content.Context
 
@@ -6,14 +6,20 @@ class PreferenceManager(context: Context) {
 
     private val preferences =
         context.getSharedPreferences(
-            "bioanalytical",
+            "bioanalytical_preferences",
             Context.MODE_PRIVATE
         )
 
-    fun saveLastPage(page: String) {
+    companion object {
+
+        private const val LAST_PAGE = "last_page"
+
+    }
+
+    fun saveLastPage(assetFile: String) {
 
         preferences.edit()
-            .putString("last_page", page)
+            .putString(LAST_PAGE, assetFile)
             .apply()
 
     }
@@ -21,9 +27,9 @@ class PreferenceManager(context: Context) {
     fun getLastPage(): String {
 
         return preferences.getString(
-            "last_page",
+            LAST_PAGE,
             "index.html"
-        )!!
+        ) ?: "index.html"
 
     }
 
