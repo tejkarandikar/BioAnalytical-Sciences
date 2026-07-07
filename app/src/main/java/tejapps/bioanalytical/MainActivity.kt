@@ -1,10 +1,10 @@
 package tejapps.bioanalytical
-
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import android.webkit.WebView
-
+import android.content.Intent
+import tejapps.bioanalytical.settings.SettingsActivity
 class MainActivity : AppCompatActivity() {
 private lateinit var drawerLayout: DrawerLayout
 private lateinit var navigationView: NavigationView
@@ -179,6 +179,23 @@ override fun onOptionsItemSelected(item: MenuItem): Boolean {
         "Current Chapter",
 
         webViewManager.getCurrentPage()
+        R.id.action_settings -> {
+
+    startActivity(
+
+        Intent(
+
+            this,
+
+            SettingsActivity::class.java
+
+        )
+
+    )
+
+    true
+
+}
 
     )
 
