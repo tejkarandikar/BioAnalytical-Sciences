@@ -82,5 +82,5 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.10.1")
 
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
-
+implementation("androidx.constraintlayout:constraintlayout:2.2.1")
 }
