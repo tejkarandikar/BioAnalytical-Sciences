@@ -11,7 +11,8 @@ import android.webkit.WebViewClient
 class WebViewManager(
     private val webView: WebView
     private val progressBar: ProgressBar
-) {
+) 
+{
 
     @SuppressLint("SetJavaScriptEnabled")
     fun initialize() {
