@@ -254,7 +254,6 @@ class MainActivity : AppCompatActivity() {
 
     shareManager.share(
 
-        "Current Chapter",
 
         webViewManager.getCurrentPage()
 
