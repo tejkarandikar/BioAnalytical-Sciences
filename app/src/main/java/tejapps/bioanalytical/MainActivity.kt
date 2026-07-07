@@ -15,6 +15,13 @@ private lateinit var navigationView: NavigationView
     private var backPressedTime: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        private lateinit var themePreference: ThemePreference
+private lateinit var themeManager: ThemeManager
+        themePreference = ThemePreference(this)
+
+themeManager = ThemeManager(themePreference)
+
+themeManager.applyTheme()
 
         super.onCreate(savedInstanceState)
 
