@@ -1,21 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Theme.BioAnalytical"
+    <style
+        name="Theme.BioAnalytical"
         parent="Theme.Material3.DayNight.NoActionBar">
 
         <item name="colorPrimary">@color/primary</item>
 
-        <item name="colorPrimaryContainer">@color/primaryLight</item>
+        <item name="colorPrimaryContainer">@color/primary_light</item>
 
-        <item name="android:statusBarColor">@color/primaryDark</item>
+        <item name="android:statusBarColor">@color/primary_dark</item>
 
-    </style>
-
-    <style name="Theme.BioAnalytical.Splash"
-        parent="Theme.Material3.DayNight.NoActionBar">
-
-        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item
+            name="android:navigationBarColor"
+            tools:targetApi="l">
+            @color/primary_dark
+        </item>
 
     </style>
 
