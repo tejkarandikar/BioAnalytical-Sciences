@@ -133,6 +133,8 @@ override fun onReceivedError(
     fun loadHomePage() {
 
         webView.loadUrl("file:///android_asset/index.html")
+        fun loadPage(assetFile: String)
+        preferenceManager.saveLastPage(assetFile)
 
     }
 
