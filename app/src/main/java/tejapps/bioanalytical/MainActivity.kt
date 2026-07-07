@@ -23,7 +23,7 @@ drawerLayout = findViewById(R.id.drawer_layout)
 
 navigationView = findViewById(R.id.nav_view)
 
-webView = findViewById(R.id.webView)
+binding.webView
 progressBar = findViewById(R.id.progressBar)                      
 val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
 
