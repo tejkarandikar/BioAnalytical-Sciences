@@ -11,7 +11,7 @@ private lateinit var navigationView: NavigationView
     private lateinit var webView: WebView
     private lateinit var webViewManager: WebViewManager
     private lateinit var progressBar: ProgressBar
-
+    private lateinit var historyManager: HistoryManager
     private var backPressedTime: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
