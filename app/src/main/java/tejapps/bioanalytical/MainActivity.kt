@@ -1,28 +1,189 @@
 package tejapps.bioanalytical
 import android.os.Bundle
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import android.view.Menu
+import android.view.MenuItem
 import android.webkit.WebView
-import android.content.Intent
-import tejapps.bioanalytical.settings.SettingsActivity
+import android.widget.ProgressBar
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.navigation.NavigationView
 class MainActivity : AppCompatActivity() {
-private lateinit var drawerLayout: DrawerLayout
-private lateinit var navigationView: NavigationView
+    private lateinit var drawerLayout: DrawerLayout
+
+    private lateinit var navigationView: NavigationView
+
+    private lateinit var toolbar: MaterialToolbar
+
     private lateinit var webView: WebView
-    private lateinit var webViewManager: WebViewManager
+
     private lateinit var progressBar: ProgressBar
+
+    private lateinit var webViewManager: WebViewManager
+
+    private lateinit var drawerManager: DrawerManager
+
+    private lateinit var bookmarkManager: BookmarkManager
+
     private lateinit var historyManager: HistoryManager
-    private var backPressedTime: Long = 0
+
     private lateinit var shareManager: ShareManager
-    override fun onCreate(savedInstanceState: Bundle?) {
-        private lateinit var themePreference: ThemePreference
-private lateinit var themeManager: ThemeManager
-        themePreference = ThemePreference(this)
-themeManager = ThemeManager(themePreference)
-themeManager.applyTheme()
-historyManager = HistoryManager(this)
-shareManager = ShareManager(this)
+
+    private lateinit var themePreference: ThemePreference
+
+    private lateinit var themeManager: ThemeManager
+
+    private lateinit var toggle: ActionBarDrawerToggle
         super.onCreate(savedInstanceState)
+            override fun onCreate(savedInstanceState: Bundle?) {
+
+        super.onCreate(savedInstanceState)
+
+        setContentView(R.layout.activity_main)
+
+        initializeViews()
+
+        initializeToolbar()
+
+        initializeManagers()
+
+        initializeDrawer()
+
+        loadHomePage()
+
+        setupBackPressed()
+
+    }
+            private fun initializeViews() {
+
+    drawerLayout = findViewById(R.id.drawer_layout)
+
+    navigationView = findViewById(R.id.nav_view)
+
+    toolbar = findViewById(R.id.toolbar)
+
+    webView = findViewById(R.id.webView)
+
+    progressBar = findViewById(R.id.progressBar)
+
+}
+            private fun initializeToolbar() {
+
+    setSupportActionBar(toolbar)
+
+    toggle = ActionBarDrawerToggle(
+
+        this,
+
+        drawerLayout,
+
+        toolbar,
+
+        R.string.navigation_drawer_open,
+
+        R.string.navigation_drawer_close
+
+    )
+
+    drawerLayout.addDrawerListener(toggle)
+
+    toggle.syncState()
+
+}
+            private fun initializeManagers() {
+
+    webViewManager = WebViewManager(
+
+        webView,
+
+        progressBar
+
+    )
+
+    bookmarkManager = BookmarkManager(this)
+
+    historyManager = HistoryManager(this)
+
+    shareManager = ShareManager(this)
+
+    themePreference = ThemePreference(this)
+
+   themeManager = ThemeManager(
+
+    this,
+
+    themePreference
+
+)
+
+}
+            private fun initializeDrawer() {
+
+    drawerManager = DrawerManager(
+
+        drawerLayout,
+
+        navigationView,
+
+        webViewManager,
+
+        historyManager
+
+    )
+
+    drawerManager.initialize()
+
+}
+            private fun loadHomePage() {
+
+    webViewManager.loadHomePage()
+
+}
+            private fun setupBackPressed() {
+
+    onBackPressedDispatcher.addCallback(
+
+        this,
+
+        object : OnBackPressedCallback(true) {
+
+            override fun handleOnBackPressed() {
+
+                when {
+
+                    drawerLayout.isDrawerOpen(
+                        navigationView
+                    ) -> {
+
+                        drawerLayout.closeDrawer(
+                            navigationView
+                        )
+
+                    }
+
+                    webView.canGoBack() -> {
+
+                        webView.goBack()
+
+                    }
+
+                    else -> {
+
+                        finish()
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    )
+
+}
         setContentView(R.layout.activity_main)
         package tejapps.bioanalytical.bookmarks
 import android.content.Context
@@ -220,3 +381,4 @@ override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
     return super.onOptionsItemSelected(item)
 }
+    
