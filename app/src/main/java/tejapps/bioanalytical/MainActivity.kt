@@ -18,22 +18,16 @@ private lateinit var navigationView: NavigationView
         private lateinit var themePreference: ThemePreference
 private lateinit var themeManager: ThemeManager
         themePreference = ThemePreference(this)
-
 themeManager = ThemeManager(themePreference)
-
 themeManager.applyTheme()
 historyManager = HistoryManager(this)
-
+shareManager = ShareManager(this)
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_main)
         package tejapps.bioanalytical.bookmarks
-
 import android.content.Context
 import org.json.JSONArray
-
 class BookmarkManager(context: Context) {
-
     private val preferences =
         context.getSharedPreferences(
             "bookmarks",
