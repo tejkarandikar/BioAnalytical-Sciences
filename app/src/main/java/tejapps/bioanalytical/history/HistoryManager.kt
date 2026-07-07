@@ -4,14 +4,13 @@ import android.content.Context
 import org.json.JSONArray
 import org.json.JSONObject
 
-class HistoryManager(context: Context) {
+class HistoryManager(
 
-    private val preferences =
-        context.getSharedPreferences(
-            "history",
-            Context.MODE_PRIVATE
-        )
+    context: Context,
 
+    private val onHistorySelected: (HistoryItem) -> Unit
+
+)
     fun addHistory(item: HistoryItem) {
 
         val array = JSONArray(
