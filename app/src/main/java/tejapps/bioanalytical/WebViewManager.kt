@@ -82,7 +82,24 @@ class WebViewManager(
         progressBar.visibility = View.GONE
 
     }
+override fun onReceivedError(
+    view: WebView?,
+    request: WebResourceRequest?,
+    error: WebResourceError?
+) 
+            {
 
+    Toast.makeText(
+
+        view?.context,
+
+        "Unable to load page",
+
+        Toast.LENGTH_SHORT
+
+    ).show()
+
+}
 }
             ): Boolean {
 
