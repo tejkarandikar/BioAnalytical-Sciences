@@ -1,18 +1,16 @@
 package tejapps.bioanalytical
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.webkit.WebChromeClient
-import android.webkit.WebSettings
-import android.webkit.WebView
-import android.webkit.WebViewClient
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import android.webkit.WebView
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var webView: WebView
+    private lateinit var webViewManager: WebViewManager
 
-    @SuppressLint("SetJavaScriptEnabled")
+    private var backPressedTime: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -22,41 +20,34 @@ class MainActivity : AppCompatActivity() {
 
         webView = findViewById(R.id.webView)
 
-        webView.webViewClient = WebViewClient()
+        webViewManager = WebViewManager(webView)
 
-        webView.webChromeClient = WebChromeClient()
+        webViewManager.initialize()
 
-        webView.settings.javaScriptEnabled = true
-
-        webView.settings.domStorageEnabled = true
-
-        webView.settings.loadsImagesAutomatically = true
-
-        webView.settings.cacheMode = WebSettings.LOAD_DEFAULT
-
-        webView.settings.allowFileAccess = true
-
-        webView.settings.allowContentAccess = true
-
-        webView.settings.builtInZoomControls = false
-
-        webView.settings.displayZoomControls = false
-
-        webView.loadUrl("file:///android_asset/index.html")
+        webViewManager.loadHomePage()
 
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
 
-        if(webView.canGoBack()){
-
-            webView.goBack()
-
+        if (webViewManager.goBack()) {
+            return
         }
 
-        else{
+        if (System.currentTimeMillis() - backPressedTime < 2000) {
 
-            super.onBackPressed()
+            finish()
+
+        } else {
+
+            Toast.makeText(
+                this,
+                "Press BACK again to exit",
+                Toast.LENGTH_SHORT
+            ).show()
+
+            backPressedTime = System.currentTimeMillis()
 
         }
 
