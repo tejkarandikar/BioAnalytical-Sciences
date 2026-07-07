@@ -126,15 +126,17 @@ class MainActivity : AppCompatActivity() {
 
     drawerManager = DrawerManager(
 
-        drawerLayout,
+    drawerLayout,
 
-        navigationView,
+    navigationView,
 
-        webViewManager,
+    webViewManager,
 
-        historyManager
+    historyManager,
 
-    )
+    preferenceManager
+
+)
 
     drawerManager.initialize()
 
