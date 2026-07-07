@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var preferenceManager: PreferenceManager
         super.onCreate(savedInstanceState)
+        private var currentChapter: Chapter? = null
             override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
