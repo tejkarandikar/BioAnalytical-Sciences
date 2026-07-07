@@ -162,3 +162,8 @@ fun loadPage(assetFile: String) {
     )
 
 }
+fun getCurrentPage(): String {
+
+    return webView.url ?: "index.html"
+
+}
