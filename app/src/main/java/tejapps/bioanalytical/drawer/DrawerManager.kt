@@ -11,10 +11,13 @@ class DrawerManager(
 
     private val navigationView: NavigationView,
 
-    private val webViewManager: WebViewManager
-    private val historyManager: HistoryManager
+    private val webViewManager: WebViewManager,
 
-) 
+    private val historyManager: HistoryManager,
+
+    private val preferenceManager: PreferenceManager
+
+)
 {
 
     fun initialize() {
@@ -30,6 +33,7 @@ class DrawerManager(
             chapter?.let {
 
                 webViewManager.loadPage(it.assetFile)
+                preferenceManager.saveLastPage(it.assetFile)
                 webViewManager.loadPage(chapter.assetFile)
                 historyManager.addHistory(
 
