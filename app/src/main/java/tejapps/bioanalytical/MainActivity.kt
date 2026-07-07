@@ -181,21 +181,49 @@ class MainActivity : AppCompatActivity() {
    
 
 }
-            private fun initializeDrawer() {
+    private fun initializeDrawer() {
 
     drawerManager = DrawerManager(
 
-    drawerLayout,
+        drawerLayout,
 
-    navigationView,
+        navigationView,
 
-    webViewManager,
+        onChapterSelected = { chapter ->
 
-    historyManager,
+            webViewManager.loadChapter(chapter)
 
-    preferenceManager
+            historyManager.addHistory(
 
-)
+                HistoryItem(
+
+                    chapter.title,
+
+                    chapter.assetFile,
+
+                    System.currentTimeMillis()
+
+                )
+
+            )
+
+            preferenceManager.saveLastPage(
+
+                chapter.assetFile
+
+            )
+
+        },
+
+        onHomeSelected = {
+
+            webViewManager.loadHomePage()
+
+            preferenceManager.saveLastPage("index.html")
+
+        }
+
+    )
 
     drawerManager.initialize()
 
