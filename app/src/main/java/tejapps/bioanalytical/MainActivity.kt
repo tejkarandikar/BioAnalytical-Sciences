@@ -70,7 +70,9 @@ webViewManager.loadHomePage()
 
         webViewManager.initialize()
 
-        webViewManager.loadHomePage()
+        val lastPage = preferenceManager.getLastPage()
+
+webViewManager.loadPage(lastPage)
 
     }
 
