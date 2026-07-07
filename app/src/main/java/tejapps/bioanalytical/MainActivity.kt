@@ -1,4 +1,5 @@
 package tejapps.bioanalytical
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -71,6 +72,63 @@ class MainActivity : AppCompatActivity() {
         loadHomePage()
 
         setupBackPressed()
+        override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+    menuInflater.inflate(R.menu.toolbar_menu, menu)
+
+    return true
+
+}
+        override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+    return when (item.itemId) {
+
+        R.id.action_bookmark -> {
+
+            addCurrentPageBookmark()
+
+            true
+
+        }
+
+        R.id.action_share -> {
+
+            shareCurrentPage()
+
+            true
+
+        }
+
+        R.id.action_settings -> {
+
+            openSettings()
+
+            true
+
+        }
+
+        else -> super.onOptionsItemSelected(item)
+
+    }
+
+}
+        private fun addCurrentPageBookmark() {
+
+    bookmarkManager.addBookmark(
+
+        Bookmark(
+
+            title = "Current Chapter",
+
+            assetFile = webViewManager.getCurrentPage(),
+
+            timestamp = System.currentTimeMillis()
+
+        )
+
+    )
+
+}
 
     }
             private fun initializeViews() {
@@ -187,6 +245,32 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+
+    )
+
+}
+            private fun shareCurrentPage() {
+
+    shareManager.share(
+
+        "Current Chapter",
+
+        webViewManager.getCurrentPage()
+
+    )
+
+}
+            private fun openSettings() {
+
+    startActivity(
+
+        Intent(
+
+            this,
+
+            SettingsActivity::class.java
+
+        )
 
     )
 
