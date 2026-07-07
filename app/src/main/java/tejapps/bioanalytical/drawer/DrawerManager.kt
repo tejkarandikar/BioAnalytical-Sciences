@@ -5,9 +5,13 @@ import com.google.android.material.navigation.NavigationView
 
 class DrawerManager(
 
-    drawerLayout,
+    private val drawerLayout: DrawerLayout,
 
-    navigationView
+    private val navigationView: NavigationView,
+
+    private val onChapterSelected: (Chapter) -> Unit,
+
+    private val onHomeSelected: () -> Unit
 
 ) { chapter ->
 
@@ -20,7 +24,7 @@ class DrawerManager(
 }
  {
 
-    fun initialize() {
+   fun initialize() {
 
     navigationView.setNavigationItemSelectedListener { item ->
 
@@ -28,15 +32,23 @@ class DrawerManager(
 
             R.id.nav_home -> {
 
-                webViewManager.loadHomePage()
-
-                preferenceManager.saveLastPage("index.html")
+                onHomeSelected()
 
             }
 
             else -> {
 
-                openChapter(item.itemId)
+                val chapter = ChapterRepository.chapters.find {
+
+                    it.menuId == item.itemId
+
+                }
+
+                chapter?.let {
+
+                    onChapterSelected(it)
+
+                }
 
             }
 
