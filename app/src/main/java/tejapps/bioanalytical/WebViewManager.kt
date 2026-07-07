@@ -2,16 +2,19 @@ package tejapps.bioanalytical
 
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
+import android.os.Build
+import android.view.View
 import android.webkit.WebChromeClient
-import android.webkit.WebResourceRequest
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
-
+import android.widget.ProgressBar
 class WebViewManager(
     private val webView: WebView
     private val progressBar: ProgressBar
-) 
+)
+    var currentChapter: Chapter? = null
+        private set
 {
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -19,28 +22,80 @@ class WebViewManager(
 
         val settings = webView.settings
 
-        settings.javaScriptEnabled = true
-        settings.domStorageEnabled = true
-        settings.databaseEnabled = true
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+       settings.loadsImagesAutomatically = true
 
-    webView.settings.forceDark = WebSettings.FORCE_DARK_AUTO
+    settings.useWideViewPort = true
+
+    settings.loadWithOverviewMode = true
+
+    settings.builtInZoomControls = true
+
+    settings.displayZoomControls = false
+
+    settings.cacheMode = WebSettings.LOAD_DEFAULT
+
+    settings.allowFileAccess = true
+
+    settings.allowContentAccess = true
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+        settings.safeBrowsingEnabled = true
+
+    }
+private fun createWebViewClient(): WebViewClient {
+
+    return object : WebViewClient() {
+
+        override fun onPageStarted(
+            view: WebView?,
+            url: String?,
+            favicon: Bitmap?
+        ) {
+
+            progressBar.visibility = View.VISIBLE
+
+        }
+
+        override fun onPageFinished(
+            view: WebView?,
+            url: String?
+        ) {
+
+            progressBar.visibility = View.GONE
+
+        }
+
+    }
 
 }
+private fun createChromeClient(): WebChromeClient {
 
-        settings.loadsImagesAutomatically = true
+    return object : WebChromeClient() {
 
-        settings.allowFileAccess = true
-        settings.allowContentAccess = true
+        override fun onProgressChanged(
 
-        settings.useWideViewPort = true
-        settings.loadWithOverviewMode = true
+            view: WebView?,
 
-        settings.builtInZoomControls = false
-        settings.displayZoomControls = false
+            newProgress: Int
 
-        settings.cacheMode = WebSettings.LOAD_DEFAULT
+        ) {
 
+            progressBar.progress = newProgress
+
+        }
+
+    }
+
+}
+    webView.webViewClient = createWebViewClient()
+
+    webView.webChromeClient = createChromeClient()
+
+}
+}
+
+        
         settings.setSupportZoom(true)
 
         webView.webChromeClient = WebChromeClient()
@@ -135,13 +190,38 @@ override fun onReceivedError(
 
     }
 
-    fun loadHomePage() {
+   fun loadHomePage() {
+
+    loadPage("index.html")
+
+}
 
         webView.loadUrl("file:///android_asset/index.html")
-        fun loadPage(assetFile: String)
-        preferenceManager.saveLastPage(assetFile)
+        fun loadPage(assetFile: String){
+       webView.loadUrl(
 
-    }
+        "file:///android_asset/$assetFile"
+
+    )
+
+}
+fun loadChapter(chapter: Chapter) {
+
+    currentChapter = chapter
+
+    loadPage(chapter.assetFile)
+
+}
+fun getCurrentPage(): String {
+
+    return currentChapter?.assetFile ?: "index.html"
+
+}
+fun getCurrentTitle(): String {
+
+    return currentChapter?.title ?: "Home"
+
+}
 
     fun goBack(): Boolean {
 
