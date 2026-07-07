@@ -39,6 +39,28 @@ class WebViewManager(
         settings.setSupportZoom(true)
 
         webView.webChromeClient = WebChromeClient()
+        webView.webChromeClient = object : WebChromeClient() {
+
+    override fun onProgressChanged(
+        view: WebView?,
+        newProgress: Int
+    ) {
+
+        progressBar.progress = newProgress
+
+        if (newProgress == 100) {
+
+            progressBar.visibility = View.GONE
+
+        } else {
+
+            progressBar.visibility = View.VISIBLE
+
+        }
+
+    }
+
+}
 
         webView.webViewClient = object : WebViewClient() {
 
