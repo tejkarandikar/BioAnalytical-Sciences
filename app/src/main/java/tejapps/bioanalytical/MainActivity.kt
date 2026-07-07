@@ -6,7 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.webkit.WebView
 
 class MainActivity : AppCompatActivity() {
-
+private lateinit var drawerLayout: DrawerLayout
+private lateinit var navigationView: NavigationView
     private lateinit var webView: WebView
     private lateinit var webViewManager: WebViewManager
 
