@@ -22,6 +22,7 @@ private lateinit var themeManager: ThemeManager
 themeManager = ThemeManager(themePreference)
 
 themeManager.applyTheme()
+historyManager = HistoryManager(this)
 
         super.onCreate(savedInstanceState)
 
