@@ -32,7 +32,7 @@ class DrawerManager(
 
             chapter?.let {
 
-                webViewManager.loadPage(it.assetFile)
+                webViewManager.loadChapter(chapter)
                 preferenceManager.saveLastPage(it.assetFile)
                 webViewManager.loadPage(chapter.assetFile)
                 historyManager.addHistory(
