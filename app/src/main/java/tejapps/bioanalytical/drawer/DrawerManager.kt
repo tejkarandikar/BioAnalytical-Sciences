@@ -5,17 +5,20 @@ import com.google.android.material.navigation.NavigationView
 
 class DrawerManager(
 
-    private val drawerLayout: DrawerLayout,
+    drawerLayout,
 
-    private val navigationView: NavigationView,
+    navigationView
 
-    private val webViewManager: WebViewManager,
+) { chapter ->
 
-    private val historyManager: HistoryManager,
+    webViewManager.loadChapter(chapter)
 
-    private val preferenceManager: PreferenceManager
+    historyManager.addHistory(...)
 
-) {
+    preferenceManager.saveLastPage(...)
+
+}
+ {
 
     fun initialize() {
 
