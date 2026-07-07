@@ -2,59 +2,93 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- Home -->
     <group android:checkableBehavior="single">
 
         <item
             android:id="@+id/nav_home"
-            android:title="Home"/>
+            android:title="Home"
+            android:icon="@android:drawable/ic_menu_view"/>
+
+    </group>
+
+    <!-- Learning Modules -->
+    <group android:checkableBehavior="single">
 
         <item
             android:id="@+id/nav_chromatography"
-            android:title="Chromatographic Techniques"/>
+            android:title="Chromatographic Techniques"
+            android:icon="@android:drawable/ic_menu_agenda"/>
 
         <item
             android:id="@+id/nav_spectroscopy"
-            android:title="Spectroscopic Techniques"/>
+            android:title="Spectroscopic Techniques"
+            android:icon="@android:drawable/ic_menu_agenda"/>
 
         <item
             android:id="@+id/nav_electrophoresis"
-            android:title="Electrophoresis"/>
+            android:title="Electrophoresis"
+            android:icon="@android:drawable/ic_menu_agenda"/>
 
         <item
             android:id="@+id/nav_immunoassays"
-            android:title="Immunoassays"/>
+            android:title="Immunoassays"
+            android:icon="@android:drawable/ic_menu_agenda"/>
 
         <item
             android:id="@+id/nav_sampleprep"
-            android:title="Sample Preparation"/>
+            android:title="Sample Preparation"
+            android:icon="@android:drawable/ic_menu_agenda"/>
 
         <item
             android:id="@+id/nav_pharmacopoeias"
-            android:title="Pharmacopoeias"/>
+            android:title="Pharmacopoeias"
+            android:icon="@android:drawable/ic_menu_agenda"/>
 
         <item
             android:id="@+id/nav_pkpd"
-            android:title="Pharmacokinetics &amp; Pharmacodynamics"/>
+            android:title="Pharmacokinetics &amp; Pharmacodynamics"
+            android:icon="@android:drawable/ic_menu_agenda"/>
 
         <item
             android:id="@+id/nav_ayurveda"
-            android:title="Ayurvedic Formulations"/>
+            android:title="Ayurvedic Formulations"
+            android:icon="@android:drawable/ic_menu_agenda"/>
 
         <item
             android:id="@+id/nav_drugs"
-            android:title="Drugs &amp; Cosmetics Act"/>
+            android:title="Drugs &amp; Cosmetics Act"
+            android:icon="@android:drawable/ic_menu_agenda"/>
+
+    </group>
+
+    <!-- Information -->
+    <group android:checkableBehavior="single">
 
         <item
             android:id="@+id/nav_author"
-            android:title="About the Author"/>
+            android:title="About the Author"
+            android:icon="@android:drawable/ic_menu_info_details"/>
 
         <item
             android:id="@+id/nav_help"
-            android:title="How to Use"/>
+            android:title="How to Use"
+            android:icon="@android:drawable/ic_menu_help"/>
 
         <item
             android:id="@+id/nav_privacy"
-            android:title="Privacy Policy"/>
+            android:title="Privacy Policy"
+            android:icon="@android:drawable/ic_lock_lock"/>
+
+    </group>
+
+    <!-- Settings -->
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_settings"
+            android:title="Settings"
+            android:icon="@android:drawable/ic_menu_preferences"/>
 
     </group>
 
