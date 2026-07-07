@@ -21,5 +21,10 @@
         android:title="Settings"
         android:icon="@android:drawable/ic_menu_preferences"
         app:showAsAction="never"/>
+    <item
+    android:id="@+id/action_share"
+    android:title="Share"
+    android:icon="@android:drawable/ic_menu_share"
+    app:showAsAction="ifRoom"/>
 
 </menu>
