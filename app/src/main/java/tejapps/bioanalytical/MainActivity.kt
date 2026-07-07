@@ -19,6 +19,61 @@ private lateinit var navigationView: NavigationView
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
+        package tejapps.bioanalytical.bookmarks
+
+import android.content.Context
+import org.json.JSONArray
+
+class BookmarkManager(context: Context) {
+
+    private val preferences =
+        context.getSharedPreferences(
+            "bookmarks",
+            Context.MODE_PRIVATE
+        )
+
+    fun addBookmark(bookmark: Bookmark) {
+
+        val array = JSONArray(
+            preferences.getString(
+                "items",
+                "[]"
+            )
+        )
+
+        array.put(bookmark.assetFile)
+
+        preferences.edit()
+            .putString(
+                "items",
+                array.toString()
+            )
+            .apply()
+
+    }
+
+    fun getBookmarks(): List<String> {
+
+        val array = JSONArray(
+            preferences.getString(
+                "items",
+                "[]"
+            )
+        )
+
+        val list = mutableListOf<String>()
+
+        for(i in 0 until array.length()){
+
+            list.add(array.getString(i))
+
+        }
+
+        return list
+
+    }
+
+}
 drawerLayout = findViewById(R.id.drawer_layout)
 
 navigationView = findViewById(R.id.nav_view)
