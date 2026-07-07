@@ -95,3 +95,10 @@ class WebViewManager(
     }
 
 }
+fun loadPage(assetFile: String) {
+
+    webView.loadUrl(
+        "file:///android_asset/$assetFile"
+    )
+
+}
