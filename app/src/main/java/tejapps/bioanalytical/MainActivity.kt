@@ -10,6 +10,7 @@ private lateinit var drawerLayout: DrawerLayout
 private lateinit var navigationView: NavigationView
     private lateinit var webView: WebView
     private lateinit var webViewManager: WebViewManager
+    private lateinit var progressBar: ProgressBar
 
     private var backPressedTime: Long = 0
 
@@ -23,6 +24,7 @@ drawerLayout = findViewById(R.id.drawer_layout)
 navigationView = findViewById(R.id.nav_view)
 
 webView = findViewById(R.id.webView)
+progressBar = findViewById(R.id.progressBar)                      
 val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
 
 setSupportActionBar(toolbar)
