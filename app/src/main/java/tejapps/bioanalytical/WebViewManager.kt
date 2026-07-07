@@ -42,9 +42,26 @@ class WebViewManager(
 
         webView.webViewClient = object : WebViewClient() {
 
-            override fun shouldOverrideUrlLoading(
-                view: WebView?,
-                request: WebResourceRequest?
+    override fun onPageStarted(
+        view: WebView?,
+        url: String?,
+        favicon: Bitmap?
+    ) {
+
+        progressBar.visibility = View.VISIBLE
+
+    }
+
+    override fun onPageFinished(
+        view: WebView?,
+        url: String?
+    ) {
+
+        progressBar.visibility = View.GONE
+
+    }
+
+}
             ): Boolean {
 
                 return false
