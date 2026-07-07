@@ -1,9 +1,7 @@
-package tejapps.bioanalytical.drawer
+package tejapps.bioanalytical
 
-import com.google.android.material.navigation.NavigationView
 import androidx.drawerlayout.widget.DrawerLayout
-import tejapps.bioanalytical.data.ChapterRepository
-import tejapps.bioanalytical.webview.WebViewManager
+import com.google.android.material.navigation.NavigationView
 
 class DrawerManager(
 
@@ -17,18 +15,68 @@ class DrawerManager(
 
     private val preferenceManager: PreferenceManager
 
-)
-{
+) {
 
     fun initialize() {
 
-        navigationView.setNavigationItemSelectedListener { item ->
+    navigationView.setNavigationItemSelectedListener { item ->
 
-            val chapter = ChapterRepository.chapters.find {
+        when (item.itemId) {
 
-                it.menuId == item.itemId
+            R.id.nav_home -> {
+
+                webViewManager.loadHomePage()
+
+                preferenceManager.saveLastPage("index.html")
 
             }
+
+            else -> {
+
+                openChapter(item.itemId)
+
+            }
+
+        }
+
+        drawerLayout.closeDrawers()
+
+        true
+
+    }
+
+}
+    private fun openChapter(menuId: Int) {
+
+    val chapter = ChapterRepository.chapters.find {
+
+        it.menuId == menuId
+
+    } ?: return
+
+    webViewManager.loadChapter(chapter)
+
+    historyManager.addHistory(
+
+        HistoryItem(
+
+            chapter.title,
+
+            chapter.assetFile,
+
+            System.currentTimeMillis()
+
+        )
+
+    )
+
+    preferenceManager.saveLastPage(
+
+        chapter.assetFile
+
+    )
+
+}
 
             chapter?.let {
 
