@@ -120,7 +120,8 @@ drawerManager = DrawerManager(
 
     navigationView,
 
-    webViewManager
+    webViewManager,
+    historyManager
 
 )
 
