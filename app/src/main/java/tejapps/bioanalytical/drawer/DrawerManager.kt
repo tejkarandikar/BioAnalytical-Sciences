@@ -1,12 +1,18 @@
 package tejapps.bioanalytical.drawer
 
-import android.webkit.WebView
 import com.google.android.material.navigation.NavigationView
+import androidx.drawerlayout.widget.DrawerLayout
 import tejapps.bioanalytical.data.ChapterRepository
+import tejapps.bioanalytical.webview.WebViewManager
 
 class DrawerManager(
+
+    private val drawerLayout: DrawerLayout,
+
     private val navigationView: NavigationView,
-    private val webView: WebView
+
+    private val webViewManager: WebViewManager
+
 ) {
 
     fun initialize() {
@@ -21,13 +27,11 @@ class DrawerManager(
 
             chapter?.let {
 
-                webView.loadUrl(
-                    "file:///android_asset/${it.assetFile}"
-                )
+                webViewManager.loadPage(it.assetFile)
 
             }
 
-            navigationView.setCheckedItem(item.itemId)
+            drawerLayout.closeDrawers()
 
             true
 
