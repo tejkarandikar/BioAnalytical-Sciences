@@ -2,25 +2,39 @@ package tejapps.bioanalytical
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 
 class SplashActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+   override fun onCreate(savedInstanceState: Bundle?) {
 
-        setContentView(R.layout.activity_splash)
+    super.onCreate(savedInstanceState)
 
-        window.decorView.postDelayed({
+    setContentView(R.layout.activity_splash)
 
-            startActivity(
-                Intent(this, MainActivity::class.java)
+    openMainActivity()
+
+}
+   private fun openMainActivity() {
+
+    Handler(Looper.getMainLooper()).postDelayed({
+
+        startActivity(
+
+            Intent(
+
+                this,
+
+                MainActivity::class.java
+
             )
 
-            finish()
+        )
 
-        },1500)
+        finish()
 
-    }
+    }, 2000)
 
 }
