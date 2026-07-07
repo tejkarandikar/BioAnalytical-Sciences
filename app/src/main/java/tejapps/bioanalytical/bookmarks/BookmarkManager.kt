@@ -10,6 +10,11 @@ class BookmarkManager(
     private val onBookmarkSelected: (Bookmark) -> Unit
 
 )
+bookmark?.let {
+
+    onBookmarkSelected(it)
+
+}
 
     fun addBookmark(bookmark: Bookmark) {
 
