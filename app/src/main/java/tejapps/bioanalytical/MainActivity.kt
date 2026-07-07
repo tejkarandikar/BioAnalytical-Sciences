@@ -173,6 +173,18 @@ override fun onOptionsItemSelected(item: MenuItem): Boolean {
                     "Current Page",
 
                     webViewManager.getCurrentPage()
+                    R.id.action_share -> {
+    shareManager.share(
+
+        "Current Chapter",
+
+        webViewManager.getCurrentPage()
+
+    )
+
+    return true
+
+}
 
                 )
 
