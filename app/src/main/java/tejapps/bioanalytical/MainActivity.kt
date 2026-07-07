@@ -185,14 +185,48 @@ class MainActivity : AppCompatActivity() {
 
     drawerManager = DrawerManager(
 
-        drawerLayout,
+    drawerLayout,
 
-        navigationView,
+    navigationView,
 
-        onChapterSelected = { chapter ->
+    onChapterSelected = { chapter ->
 
-            webViewManager.loadChapter(chapter)
+        openChapter(chapter)
 
+    },
+
+    onHomeSelected = {
+
+        openHome()
+
+    }
+
+)
+    private fun openChapter(chapter: Chapter) {
+
+    webViewManager.loadChapter(chapter)
+
+    historyManager.addHistory(
+
+        HistoryItem(
+
+            chapter.title,
+
+            chapter.assetFile,
+
+            System.currentTimeMillis()
+
+        )
+
+    )
+
+    preferenceManager.saveLastPage(
+
+        chapter.assetFile
+
+    )
+
+}
             historyManager.addHistory(
 
                 HistoryItem(
