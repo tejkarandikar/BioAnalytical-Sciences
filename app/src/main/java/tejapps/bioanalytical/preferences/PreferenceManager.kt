@@ -14,12 +14,18 @@ class PreferenceManager(context: Context) {
 
         private const val LAST_PAGE = "last_page"
 
+        private const val LAST_TITLE = "last_title"
+
     }
 
-    fun saveLastPage(assetFile: String) {
+    fun saveLastChapter(chapter: Chapter) {
 
         preferences.edit()
-            .putString(LAST_PAGE, assetFile)
+
+            .putString(LAST_PAGE, chapter.assetFile)
+
+            .putString(LAST_TITLE, chapter.title)
+
             .apply()
 
     }
@@ -30,6 +36,27 @@ class PreferenceManager(context: Context) {
             LAST_PAGE,
             "index.html"
         ) ?: "index.html"
+
+    }
+
+    fun getLastTitle(): String {
+
+        return preferences.getString(
+            LAST_TITLE,
+            "Home"
+        ) ?: "Home"
+
+    }
+
+    fun clearLastChapter() {
+
+        preferences.edit()
+
+            .remove(LAST_PAGE)
+
+            .remove(LAST_TITLE)
+
+            .apply()
 
     }
 
