@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_home"
+            android:title="Home"/>
+
+        <item
+            android:id="@+id/nav_chromatography"
+            android:title="Chromatographic Techniques"/>
+
+        <item
+            android:id="@+id/nav_spectroscopy"
+            android:title="Spectroscopic Techniques"/>
+
+        <item
+            android:id="@+id/nav_electrophoresis"
+            android:title="Electrophoresis"/>
+
+        <item
+            android:id="@+id/nav_immunoassays"
+            android:title="Immunoassays"/>
+
+        <item
+            android:id="@+id/nav_sampleprep"
+            android:title="Sample Preparation"/>
+
+        <item
+            android:id="@+id/nav_pharmacopoeias"
+            android:title="Pharmacopoeias"/>
+
+        <item
+            android:id="@+id/nav_pkpd"
+            android:title="Pharmacokinetics &amp; Pharmacodynamics"/>
+
+        <item
+            android:id="@+id/nav_ayurveda"
+            android:title="Ayurvedic Formulations"/>
+
+        <item
+            android:id="@+id/nav_drugs"
+            android:title="Drugs &amp; Cosmetics Act"/>
+
+        <item
+            android:id="@+id/nav_author"
+            android:title="About the Author"/>
+
+        <item
+            android:id="@+id/nav_help"
+            android:title="How to Use"/>
+
+        <item
+            android:id="@+id/nav_privacy"
+            android:title="Privacy Policy"/>
+
+    </group>
+
+</menu>
