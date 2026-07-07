@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var themeManager: ThemeManager
 
     private lateinit var toggle: ActionBarDrawerToggle
+    private lateinit var preferenceManager: PreferenceManager
         super.onCreate(savedInstanceState)
             override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -48,6 +49,22 @@ class MainActivity : AppCompatActivity() {
         initializeToolbar()
 
         initializeManagers()
+        preferenceManager = PreferenceManager(this)
+         bookmarkManager = BookmarkManager(this)
+
+    historyManager = HistoryManager(this)
+
+    shareManager = ShareManager(this)
+
+    themePreference = ThemePreference(this)
+
+   themeManager = ThemeManager(
+
+    this,
+
+    themePreference
+
+)
 
         initializeDrawer()
 
@@ -102,21 +119,7 @@ class MainActivity : AppCompatActivity() {
 
     )
 
-    bookmarkManager = BookmarkManager(this)
-
-    historyManager = HistoryManager(this)
-
-    shareManager = ShareManager(this)
-
-    themePreference = ThemePreference(this)
-
-   themeManager = ThemeManager(
-
-    this,
-
-    themePreference
-
-)
+   
 
 }
             private fun initializeDrawer() {
@@ -136,9 +139,11 @@ class MainActivity : AppCompatActivity() {
     drawerManager.initialize()
 
 }
-            private fun loadHomePage() {
+           private fun loadHomePage() {
 
-    webViewManager.loadHomePage()
+    val lastPage = preferenceManager.getLastPage()
+
+    webViewManager.loadPage(lastPage)
 
 }
             private fun setupBackPressed() {
