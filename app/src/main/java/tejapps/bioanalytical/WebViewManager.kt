@@ -22,6 +22,11 @@ class WebViewManager(
         settings.javaScriptEnabled = true
         settings.domStorageEnabled = true
         settings.databaseEnabled = true
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+
+    webView.settings.forceDark = WebSettings.FORCE_DARK_AUTO
+
+}
 
         settings.loadsImagesAutomatically = true
 
