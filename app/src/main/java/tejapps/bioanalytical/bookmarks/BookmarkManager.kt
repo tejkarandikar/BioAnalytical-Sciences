@@ -3,13 +3,13 @@ package tejapps.bioanalytical.bookmarks
 import android.content.Context
 import org.json.JSONArray
 
-class BookmarkManager(context: Context) {
+class BookmarkManager(
 
-    private val preferences =
-        context.getSharedPreferences(
-            "bookmarks",
-            Context.MODE_PRIVATE
-        )
+    context: Context,
+
+    private val onBookmarkSelected: (Bookmark) -> Unit
+
+)
 
     fun addBookmark(bookmark: Bookmark) {
 
