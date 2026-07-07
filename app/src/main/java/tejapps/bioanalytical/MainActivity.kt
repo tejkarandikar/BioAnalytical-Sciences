@@ -157,3 +157,34 @@ webViewManager.loadPage(lastPage)
     }
 
 }
+override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+    when (item.itemId) {
+
+        R.id.action_bookmark -> {
+
+            bookmarkManager.addBookmark(
+
+                Bookmark(
+
+                    "Current Page",
+
+                    webViewManager.getCurrentPage()
+
+                )
+
+            )
+
+            Toast.makeText(
+                this,
+                "Bookmark added",
+                Toast.LENGTH_SHORT
+            ).show()
+
+            return true
+        }
+
+    }
+
+    return super.onOptionsItemSelected(item)
+}
