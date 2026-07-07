@@ -7,7 +7,7 @@ class SearchManager(
 
     private val searchView: SearchView,
 
-    private val onResult: (List<Chapter>) -> Unit
+    private val onChapterSelected: (Chapter) -> Unit
 
 ) {
 
