@@ -18,7 +18,50 @@ private lateinit var navigationView: NavigationView
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
+drawerLayout = findViewById(R.id.drawer_layout)
 
+navigationView = findViewById(R.id.nav_view)
+
+webView = findViewById(R.id.webView)
+val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
+
+setSupportActionBar(toolbar)
+
+val toggle = ActionBarDrawerToggle(
+
+    this,
+
+    drawerLayout,
+
+    toolbar,
+
+    R.string.navigation_drawer_open,
+
+    R.string.navigation_drawer_close
+
+)
+
+drawerLayout.addDrawerListener(toggle)
+
+toggle.syncState()
+
+webViewManager = WebViewManager(webView)
+
+webViewManager.initialize()
+
+drawerManager = DrawerManager(
+
+    drawerLayout,
+
+    navigationView,
+
+    webViewManager
+
+)
+
+drawerManager.initialize()
+
+webViewManager.loadHomePage()
         webView = findViewById(R.id.webView)
 
         webViewManager = WebViewManager(webView)
