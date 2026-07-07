@@ -13,7 +13,7 @@ private lateinit var navigationView: NavigationView
     private lateinit var progressBar: ProgressBar
     private lateinit var historyManager: HistoryManager
     private var backPressedTime: Long = 0
-
+    private lateinit var shareManager: ShareManager
     override fun onCreate(savedInstanceState: Bundle?) {
         private lateinit var themePreference: ThemePreference
 private lateinit var themeManager: ThemeManager
