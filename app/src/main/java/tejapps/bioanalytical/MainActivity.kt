@@ -241,12 +241,9 @@ class MainActivity : AppCompatActivity() {
 
             )
 
-            preferenceManager.saveLastPage(
-
-                chapter.assetFile
-
-            )
-
+           preferenceManager.saveLastChapter(
+    chapter
+)
         },
 
         onHomeSelected = {
