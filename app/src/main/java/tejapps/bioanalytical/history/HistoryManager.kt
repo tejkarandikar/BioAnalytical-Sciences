@@ -18,43 +18,65 @@ class HistoryManager(
 }
     fun addHistory(item: HistoryItem) {
 
-    val array = JSONArray(
-        preferences.getString("items", "[]")
-    )
+    val history = getHistory().toMutableList()
 
-    val obj = JSONObject()
+    // Remove existing occurrence of the same chapter
+    history.removeAll {
 
-    obj.put(
-        "menuId",
-        item.chapter.menuId
-    )
+        it.chapter.menuId == item.chapter.menuId
 
-    obj.put(
-        "title",
-        item.chapter.title
-    )
+    }
 
-    obj.put(
-        "assetFile",
-        item.chapter.assetFile
-    )
+    // Add the new item at the beginning
+    history.add(0, item)
 
-    obj.put(
-        "timestamp",
-        item.timestamp
-    )
+    // Keep only the latest 50 items
+    if (history.size > 50) {
 
-    array.put(obj)
+        history.subList(50, history.size).clear()
+
+    }
+
+    val array = JSONArray()
+
+    history.forEach { historyItem ->
+
+        val obj = JSONObject()
+
+        obj.put(
+            "menuId",
+            historyItem.chapter.menuId
+        )
+
+        obj.put(
+            "title",
+            historyItem.chapter.title
+        )
+
+        obj.put(
+            "assetFile",
+            historyItem.chapter.assetFile
+        )
+
+        obj.put(
+            "timestamp",
+            historyItem.timestamp
+        )
+
+        array.put(obj)
+
+    }
 
     preferences.edit()
+
         .putString(
             "items",
             array.toString()
         )
+
         .apply()
 
 }
-
         val objectItem = JSONObject()
 
         objectItem.put("title", item.title)
