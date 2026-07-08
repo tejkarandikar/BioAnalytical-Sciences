@@ -1,13 +1,19 @@
-package tejapps.bioanalytical.bookmarks
-
-package tejapps.bioanalytical.bookmarks
+package tejapps.bioanalytical
 
 data class Bookmark(
 
-    val title: String,
+    override val title: String,
 
-    val assetFile: String,
+    override val assetFile: String,
 
-    val timestamp: Long
+    override val timestamp: Long
+
+) : ChapterReference(
+
+    title,
+
+    assetFile,
+
+    timestamp
 
 )
