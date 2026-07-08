@@ -4,11 +4,22 @@ import android.content.Context
 
 class PreferenceManager(context: Context) {
 
-    private val preferences =
-        context.getSharedPreferences(
-            "bioanalytical_preferences",
-            Context.MODE_PRIVATE
+    companion object {
+
+    const val PREF_NAME = "bioanalytical_preferences"
+
+    private const val LAST_PAGE = "last_page"
+
+    private const val LAST_TITLE = "last_title"
+
+}
         )
+private val preferences =
+    context.getSharedPreferences(
+        PREF_NAME,
+        Context.MODE_PRIVATE
+    )
+}
 
     companion object {
 
