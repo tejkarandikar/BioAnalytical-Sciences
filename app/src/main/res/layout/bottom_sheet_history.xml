@@ -2,16 +2,102 @@
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="24dp">
 
-    <TextView
-        android:layout_width="wrap_content"
+    android:orientation="vertical"
+
+    android:padding="16dp">
+
+    <!-- Drag Handle -->
+
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_drag_handle"/>
+
+    <!-- Title -->
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txtTitle"
+
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="History"
-        android:textSize="22sp"
-        android:textStyle="bold"/>
+
+        android:text="@string/history"
+
+        android:textAppearance="?attr/textAppearanceHeadlineSmall"
+
+        android:paddingBottom="16dp"/>
+
+    <!-- RecyclerView -->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerHistory"
+
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+
+        android:layout_weight="1"/>
+
+    <!-- Empty Layout -->
+
+    <LinearLayout
+        android:id="@+id/layoutEmpty"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:gravity="center"
+
+        android:orientation="vertical"
+
+        android:padding="32dp"
+
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:src="@drawable/ic_history"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="@string/no_history"
+
+            android:textStyle="bold"
+
+            android:textSize="18sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:gravity="center"
+
+            android:text="@string/no_history_message"/>
+
+    </LinearLayout>
+
+    <!-- Clear Button -->
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnClearHistory"
+
+        style="@style/Widget.Material3.Button.OutlinedButton"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="16dp"
+
+        android:text="@string/clear_history"/>
 
 </LinearLayout>
