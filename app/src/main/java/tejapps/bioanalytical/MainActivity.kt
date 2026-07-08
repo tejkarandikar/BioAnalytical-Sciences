@@ -327,12 +327,11 @@ class MainActivity : AppCompatActivity() {
 }
             private fun shareCurrentPage() {
 
-    shareManager.share(
+    webViewManager.currentChapter?.let {
 
+        shareManager.shareChapter(it)
 
-        webViewManager.getCurrentPage()
-
-    )
+    }
 
 }
             private fun openSettings() {
