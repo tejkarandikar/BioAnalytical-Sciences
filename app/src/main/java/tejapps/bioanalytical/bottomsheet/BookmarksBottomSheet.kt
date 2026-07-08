@@ -2,6 +2,7 @@ package tejapps.bioanalytical.bottomsheet
 import tejapps.bioanalytical.bookmark
 import android.view.View
 import android.widget.Button
+import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import tejapps.bioanalytical.R
@@ -19,6 +20,7 @@ class BookmarksBottomSheet(
     private lateinit var recyclerView: RecyclerView
 
     private lateinit var adapter: BookmarkAdapter
+    private lateinit var emptyLayout: LinearLayout
 
 
     override fun initializeViews(view: View) {
