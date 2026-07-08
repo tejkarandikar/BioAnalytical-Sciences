@@ -9,6 +9,7 @@ import tejapps.bioanalytical.R
 import tejapps.bioanalytical.adapters.BookmarkAdapter
 import tejapps.bioanalytical.managers.BookmarkManager
 import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.appcompat.app.AlertDialog
 
 class BookmarksBottomSheet(
 
@@ -55,20 +56,29 @@ class BookmarksBottomSheet(
 
         val clearButton = view.findViewById<Button>(R.id.btnClearBookmarks)
 
-     clearButton.setOnClickListener {
+    clearButton.setOnClickListener {
 
-    bookmarkManager.clearBookmarks()
+    AlertDialog.Builder(requireContext())
 
-    adapter.submitList(emptyList())
+        .setTitle(R.string.clear_bookmarks_title)
 
-    updateEmptyState()
+        .setMessage(R.string.clear_bookmarks_message)
 
-}
+        .setPositiveButton(R.string.yes) { _, _ ->
 
             bookmarkManager.clearBookmarks()
 
             adapter.submitList(emptyList())
+
             updateEmptyState()
+
+        }
+
+        .setNegativeButton(R.string.no, null)
+
+        .show()
+
+}
 val swipeHandler =
 
     object : ItemTouchHelper.SimpleCallback(
