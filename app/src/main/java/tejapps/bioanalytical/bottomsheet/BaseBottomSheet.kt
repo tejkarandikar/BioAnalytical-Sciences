@@ -26,4 +26,15 @@ abstract class BaseBottomSheet(
 
     }
 
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?
+    ) {
+        super.onViewCreated(view, savedInstanceState)
+
+        initializeViews(view)
+    }
+
+    protected abstract fun initializeViews(view: View)
+
 }
