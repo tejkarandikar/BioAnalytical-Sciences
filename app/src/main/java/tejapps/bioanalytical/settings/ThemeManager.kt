@@ -10,9 +10,11 @@ class ThemeManager(
 
     fun applyTheme() {
 
+   fun applyTheme() {
+
     when (themePreference.getTheme()) {
 
-        ThemePreference.LIGHT -> {
+        AppTheme.LIGHT -> {
 
             AppCompatDelegate.setDefaultNightMode(
 
@@ -22,7 +24,7 @@ class ThemeManager(
 
         }
 
-        ThemePreference.DARK -> {
+        AppTheme.DARK -> {
 
             AppCompatDelegate.setDefaultNightMode(
 
@@ -32,6 +34,19 @@ class ThemeManager(
 
         }
 
+        AppTheme.SYSTEM -> {
+
+            AppCompatDelegate.setDefaultNightMode(
+
+                AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+
+            )
+
+        }
+
+    }
+
+}
         else -> {
 
             AppCompatDelegate.setDefaultNightMode(
@@ -45,11 +60,10 @@ class ThemeManager(
     }
 
 }
-    fun setTheme(theme: String) {
+    fun setTheme(theme: AppTheme) {
 
     themePreference.saveTheme(theme)
 
     applyTheme()
 
-}
 }
