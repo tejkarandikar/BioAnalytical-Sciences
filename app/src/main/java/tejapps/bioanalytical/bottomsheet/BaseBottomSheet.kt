@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import android.view.View
 
 abstract class BaseBottomSheet(
     @LayoutRes
@@ -37,4 +39,18 @@ abstract class BaseBottomSheet(
 
     protected abstract fun initializeViews(view: View)
 
+}
+override fun onStart() {
+    super.onStart()
+
+    dialog?.let { dialog ->
+        val bottomSheet = dialog.findViewById<View>(
+            com.google.android.material.R.id.design_bottom_sheet
+        )
+
+        bottomSheet?.let {
+            val behavior = BottomSheetBehavior.from(it)
+            behavior.state = BottomSheetBehavior.STATE_EXPANDED
+        }
+    }
 }
