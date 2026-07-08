@@ -115,6 +115,46 @@ class BookmarkManager(
         .apply()
 
 }
+    fun removeBookmark(bookmark: Bookmark) {
+
+    val bookmarks = getBookmarks().toMutableList()
+
+    bookmarks.removeAll {
+
+        it.chapter.menuId == bookmark.chapter.menuId
+
+    }
+
+    saveBookmarks(bookmarks)
+
+}
+    private fun saveBookmarks(
+
+    bookmarks: List<Bookmark>
+
+) {
+
+    val array = JSONArray()
+
+    bookmarks.forEach { item ->
+
+        val obj = JSONObject()
+
+        obj.put("menuId", item.chapter.menuId)
+
+        obj.put("timestamp", item.timestamp)
+
+        array.put(obj)
+
+    }
+
+    preferences.edit()
+
+        .putString("items", array.toString())
+
+        .apply()
+
+}
 
         val list = mutableListOf<String>()
 
@@ -129,3 +169,4 @@ class BookmarkManager(
     }
 
 }
+
