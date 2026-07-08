@@ -1,5 +1,9 @@
-data class ChapterReference(
-    val title: String,
-    val assetFile: String,
+package tejapps.bioanalytical
+
+interface ChapterReference {
+
+    val chapter: Chapter
+
     val timestamp: Long
-)
+
+}
