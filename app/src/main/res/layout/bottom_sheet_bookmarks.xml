@@ -16,12 +16,14 @@
     android:padding="16dp">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/txtTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/bookmarks"
-        android:textStyle="bold"
-        android:textSize="22sp"/>
+
+    android:id="@+id/txtTitle"
+
+    android:text="@string/bookmarks"
+
+    android:textAppearance="?attr/textAppearanceHeadlineSmall"
+
+    android:paddingBottom="16dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerBookmarks"
