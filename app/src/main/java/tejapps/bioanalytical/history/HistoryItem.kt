@@ -1,11 +1,19 @@
-package tejapps.bioanalytical.history
+package tejapps.bioanalytical
 
 data class HistoryItem(
 
-    val title: String,
+    override val title: String,
 
-    val assetFile: String,
+    override val assetFile: String,
 
-    val timestamp: Long
+    override val timestamp: Long
+
+) : ChapterReference(
+
+    title,
+
+    assetFile,
+
+    timestamp
 
 )
