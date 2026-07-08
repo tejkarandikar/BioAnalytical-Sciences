@@ -19,25 +19,25 @@ class BookmarksBottomSheet(
 
     private lateinit var adapter: BookmarkAdapter
 
-    private lateinit var bookmarkManager: BookmarkManager
 
     override fun initializeViews(view: View) {
 
-        bookmarkManager = BookmarkManager(requireContext())
 
         recyclerView = view.findViewById(R.id.recyclerBookmarks)
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        adapter = BookmarkAdapter(
+       adapter = BookmarkAdapter(
 
-            bookmarkManager.getBookmarks()
+    bookmarkManager.getBookmarks()
 
-        ) { bookmark ->
+) { bookmark ->
 
-            // We'll add this callback in Module 4B-4
+    onBookmarkSelected(bookmark)
 
-        }
+    dismiss()
+
+}
 
         recyclerView.adapter = adapter
 
