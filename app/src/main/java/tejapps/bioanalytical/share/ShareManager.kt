@@ -1,39 +1,88 @@
-package tejapps.bioanalytical.share
+package tejapps.bioanalytical
 
 import android.content.Context
 import android.content.Intent
 
 class ShareManager(
+
     private val context: Context
+
 ) {
 
-    fun share(title: String, assetFile: String) {
+    fun shareChapter(chapter: Chapter) {
 
-        val text = """
-BioAnalytical Sciences
+    val shareText = buildString {
 
-Chapter:
-$title
+        append("BioAnalytical Sciences\n\n")
 
-Currently viewing:
-$assetFile
-""".trimIndent()
+        append("Chapter: ")
 
-        val intent = Intent(Intent.ACTION_SEND)
+        append(chapter.title)
 
-        intent.type = "text/plain"
+        append("\n\n")
 
-        intent.putExtra(Intent.EXTRA_TEXT, text)
-
-        context.startActivity(
-
-            Intent.createChooser(
-                intent,
-                "Share using"
-            )
-
-        )
+        append("This chapter is available in the BioAnalytical Sciences Android application.")
 
     }
 
+    val intent = Intent(Intent.ACTION_SEND).apply {
+
+        type = "text/plain"
+
+        putExtra(Intent.EXTRA_SUBJECT, chapter.title)
+
+        putExtra(Intent.EXTRA_TEXT, shareText)
+
+    }
+
+    context.startActivity(
+
+        Intent.createChooser(
+
+            intent,
+
+            "Share Chapter"
+
+        )
+
+    )
+
 }
+    fun shareApp() {
+
+    val shareText =
+
+        """
+        BioAnalytical Sciences
+        
+        Learn Chromatography, Spectroscopy,
+        Electrophoresis, Immunoassays,
+        Pharmacopoeias and more.
+        
+        Download from Google Play:
+        
+        https://play.google.com/store/apps/details?id=tejapps.bioanalytical
+        """.trimIndent()
+
+    val intent = Intent(Intent.ACTION_SEND).apply {
+
+        type = "text/plain"
+
+        putExtra(Intent.EXTRA_TEXT, shareText)
+
+    }
+
+    context.startActivity(
+
+        Intent.createChooser(
+
+            intent,
+
+            "Share App"
+
+        )
+
+    )
+
+}
+    }
