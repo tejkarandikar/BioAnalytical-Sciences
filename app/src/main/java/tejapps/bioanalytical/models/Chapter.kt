@@ -1,13 +1,13 @@
-package tejapps.bioanalytical.models
+package tejapps.bioanalytical
 
 data class Chapter(
 
-    val id: Int,
+    val menuId: Int,
 
     val title: String,
 
     val assetFile: String,
 
-    val menuId: Int
+    val keywords: List<String> = emptyList()
 
 )
