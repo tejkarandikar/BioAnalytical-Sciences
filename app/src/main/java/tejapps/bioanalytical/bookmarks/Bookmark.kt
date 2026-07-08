@@ -2,8 +2,8 @@ package tejapps.bioanalytical
 
 data class Bookmark(
 
-    val chapter: Chapter,
+    override val chapter: Chapter,
 
-    val timestamp: Long
+    override val timestamp: Long
 
-)
+) : ChapterReference
