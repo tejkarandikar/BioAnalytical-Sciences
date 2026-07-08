@@ -1,5 +1,5 @@
 package tejapps.bioanalytical.bottomsheet
-
+import tejapps.bioanalytical.bookmark
 import android.view.View
 import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,9 +8,13 @@ import tejapps.bioanalytical.R
 import tejapps.bioanalytical.adapters.BookmarkAdapter
 import tejapps.bioanalytical.managers.BookmarkManager
 
-class BookmarksBottomSheet :
-    BaseBottomSheet(R.layout.bottom_sheet_bookmarks) {
+class BookmarksBottomSheet(
 
+    private val bookmarkManager: BookmarkManager,
+
+    private val onBookmarkSelected: (Bookmark) -> Unit
+
+) : BaseBottomSheet(R.layout.bottom_sheet_bookmarks) {
     private lateinit var recyclerView: RecyclerView
 
     private lateinit var adapter: BookmarkAdapter
