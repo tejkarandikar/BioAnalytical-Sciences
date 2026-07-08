@@ -132,13 +132,13 @@ class MainActivity : AppCompatActivity() {
 }
         private fun addCurrentPageBookmark() {
 
+    val chapter = webViewManager.currentChapter ?: return
+
     bookmarkManager.addBookmark(
 
         Bookmark(
 
-            title = "Current Chapter",
-
-            assetFile = webViewManager.getCurrentPage(),
+            chapter = chapter,
 
             timestamp = System.currentTimeMillis()
 
@@ -147,8 +147,6 @@ class MainActivity : AppCompatActivity() {
     )
 
 }
-
-    }
             private fun initializeViews() {
 
     drawerLayout = findViewById(R.id.drawer_layout)
