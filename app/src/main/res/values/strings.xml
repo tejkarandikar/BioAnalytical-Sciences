@@ -22,5 +22,10 @@
 
     <string name="menu_help">How to Use</string>
     <string name="app_subtitle">Learning • Reference • Research</string>
+    <string name="bookmarks">Bookmarks</string>
+
+<string name="clear_all_bookmarks">Clear All Bookmarks</string>
+
+<string name="no_bookmarks">No bookmarks available</string>
 
 </resources>
