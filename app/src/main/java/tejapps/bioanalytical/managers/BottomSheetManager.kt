@@ -10,6 +10,8 @@ import tejapps.bioanalytical.bottomsheet.SearchBottomSheet
 import tejapps.bioanalytical.bottomsheet.SettingsBottomSheet
 import tejapps.bioanalytical.bookmark.Bookmark
 import tejapps.bioanalytical.bookmark.BookmarkManager
+import tejapps.bioanalytical.history.HistoryItem
+import tejapps.bioanalytical.managers.HistoryManager
 class BottomSheetManager(
 
     private val fragmentManager: FragmentManager
