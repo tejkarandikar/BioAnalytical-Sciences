@@ -73,7 +73,15 @@ val swipeHandler =
             return false
 
         }
+ItemTouchHelper(
 
+    swipeHandler
+
+).attachToRecyclerView(
+
+    recyclerView
+
+)
         override fun onSwiped(
 
             viewHolder: RecyclerView.ViewHolder,
