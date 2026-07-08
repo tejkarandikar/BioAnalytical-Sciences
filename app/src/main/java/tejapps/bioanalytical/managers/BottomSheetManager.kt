@@ -38,17 +38,27 @@ class BottomSheetManager(
     )
 
 }
-  fun showHistory() {
+  fun showHistory(
 
-    HistoryBottomSheet()
+    historyManager: HistoryManager,
 
-        .show(
+    onHistorySelected: (HistoryItem) -> Unit
 
-            fragmentManager,
+) {
 
-            "HistoryBottomSheet"
+    HistoryBottomSheet(
 
-        )
+        historyManager,
+
+        onHistorySelected
+
+    ).show(
+
+        fragmentManager,
+
+        "HistoryBottomSheet"
+
+    )
 
 }
   fun showSearch() {
