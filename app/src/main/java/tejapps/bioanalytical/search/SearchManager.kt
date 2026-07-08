@@ -43,13 +43,26 @@ class SearchManager(
 
         .firstOrNull {
 
-            it.title.contains(
+           it.title.contains(
+    query,
+    ignoreCase = true
+)
 
-                query,
+||
 
-                ignoreCase = true
+it.keywords.any {
 
-            )
+    keyword ->
+
+    keyword.contains(
+
+        query,
+
+        ignoreCase = true
+
+    )
+
+}
 
         }
 
