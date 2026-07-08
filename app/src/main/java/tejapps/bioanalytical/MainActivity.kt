@@ -67,6 +67,7 @@ class MainActivity : AppCompatActivity() {
     themePreference
 
 )
+   themeManager.applyTheme()
 
         initializeDrawer()
 
