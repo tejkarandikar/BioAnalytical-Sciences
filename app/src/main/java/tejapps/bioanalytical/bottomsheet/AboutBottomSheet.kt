@@ -1,3 +1,6 @@
 package tejapps.bioanalytical.bottomsheet
 
-class BookmarksBottomSheet : BaseBottomSheet()
+import tejapps.bioanalytical.R
+
+class AboutBottomSheet :
+    BaseBottomSheet(R.layout.bottom_sheet_about)
