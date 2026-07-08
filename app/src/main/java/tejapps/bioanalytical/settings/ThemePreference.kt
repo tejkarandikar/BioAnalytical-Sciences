@@ -6,12 +6,6 @@ class ThemePreference(context: Context) {
 
  companion object {
 
-    const val SYSTEM = "SYSTEM"
-
-    const val LIGHT = "LIGHT"
-
-    const val DARK = "DARK"
-
     private const val KEY_THEME = "theme"
 
 }
@@ -30,15 +24,25 @@ class ThemePreference(context: Context) {
             .apply()
 
     }
+fun saveTheme(theme: AppTheme) {
 
-    fun getTheme(): String {
+    preferences.edit()
 
-    return preferences.getString(
+        .putString(KEY_THEME, theme.name)
+
+        .apply()
+
+}
+    fun getTheme(): AppTheme {
+
+    val value = preferences.getString(
 
         KEY_THEME,
 
-        SYSTEM
+        AppTheme.SYSTEM.name
 
-    ) ?: SYSTEM
-}
+    ) ?: AppTheme.SYSTEM.name
+
+    return AppTheme.valueOf(value)
+
 }
