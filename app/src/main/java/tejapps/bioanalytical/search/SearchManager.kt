@@ -39,9 +39,9 @@ class SearchManager(
 
     val chapter = ChapterRepository
 
-        .getAllChapters()
+.search(query)
 
-        .firstOrNull {
+.firstOrNull()
 
            it.title.contains(
     query,
