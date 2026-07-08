@@ -1,29 +1,55 @@
-package tejapps.bioanalytical.settings
+package tejapps.bioanalytical
 
 import androidx.appcompat.app.AppCompatDelegate
 
 class ThemeManager(
-    private val preference: ThemePreference
+
+    private val themePreference: ThemePreference
+
 ) {
 
     fun applyTheme() {
 
-        when (preference.getTheme()) {
+    when (themePreference.getTheme()) {
 
-            1 -> AppCompatDelegate.setDefaultNightMode(
+        ThemePreference.LIGHT -> {
+
+            AppCompatDelegate.setDefaultNightMode(
+
                 AppCompatDelegate.MODE_NIGHT_NO
+
             )
 
-            2 -> AppCompatDelegate.setDefaultNightMode(
+        }
+
+        ThemePreference.DARK -> {
+
+            AppCompatDelegate.setDefaultNightMode(
+
                 AppCompatDelegate.MODE_NIGHT_YES
+
             )
 
-            else -> AppCompatDelegate.setDefaultNightMode(
+        }
+
+        else -> {
+
+            AppCompatDelegate.setDefaultNightMode(
+
                 AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+
             )
 
         }
 
     }
 
+}
+    fun setTheme(theme: String) {
+
+    themePreference.saveTheme(theme)
+
+    applyTheme()
+
+}
 }
