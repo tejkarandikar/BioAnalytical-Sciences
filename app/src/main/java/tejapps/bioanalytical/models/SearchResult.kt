@@ -1,9 +1,10 @@
 package tejapps.bioanalytical.models
-
 data class SearchResult(
 
-    val title: String,
+    val chapter: Chapter,
 
-    val assetFile: String
+    val matchedText: String,
+
+    val matchType: MatchType
 
 )
