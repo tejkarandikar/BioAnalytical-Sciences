@@ -73,9 +73,25 @@ class MainActivity : AppCompatActivity() {
         loadHomePage()
 
         setupBackPressed()
-        override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+       override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
     menuInflater.inflate(R.menu.toolbar_menu, menu)
+
+    val searchItem = menu?.findItem(R.id.action_search)
+
+    val searchView = searchItem?.actionView as SearchView
+
+    searchManager = SearchManager(
+
+        searchView
+
+    ) { chapter ->
+
+        openChapter(chapter)
+
+    }
+
+    searchManager.initialize()
 
     return true
 
