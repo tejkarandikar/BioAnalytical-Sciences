@@ -106,27 +106,29 @@ class HistoryManager(
 
         val obj = array.getJSONObject(i)
 
-        val chapter = Chapter(
+        val menuId = obj.getInt("menuId")
 
-            menuId = obj.getInt("menuId"),
+        val chapter = ChapterRepository.chapters.find {
 
-            title = obj.getString("title"),
+            it.menuId == menuId
 
-            assetFile = obj.getString("assetFile")
+        }
 
-        )
+        if (chapter != null) {
 
-        history.add(
+            history.add(
 
-            HistoryItem(
+                HistoryItem(
 
-                chapter = chapter,
+                    chapter = chapter,
 
-                timestamp = obj.getLong("timestamp")
+                    timestamp = obj.getLong("timestamp")
+
+                )
 
             )
 
-        )
+        }
 
     }
 
