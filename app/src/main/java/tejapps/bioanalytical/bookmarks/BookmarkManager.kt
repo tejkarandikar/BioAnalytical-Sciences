@@ -1,49 +1,142 @@
-package tejapps.bioanalytical.bookmarks
+package tejapps.bioanalytical
 
 import android.content.Context
 import org.json.JSONArray
+import org.json.JSONObject
 
 class BookmarkManager(
 
-    context: Context,
+    context: Context
 
-    private val onBookmarkSelected: (Bookmark) -> Unit
+) {
 
-)
-bookmark?.let {
+    private val preferences =
 
-    onBookmarkSelected(it)
+        context.getSharedPreferences(
+
+            "bookmarks",
+
+            Context.MODE_PRIVATE
+
+        )
+
+}
+    fun addBookmark(
+
+    bookmark: Bookmark
+
+) {
+
+    val array = JSONArray(
+
+        preferences.getString(
+
+            "items",
+
+            "[]"
+
+        )
+
+    )
+
+    val obj = JSONObject()
+
+    obj.put(
+
+        "title",
+
+        bookmark.chapter.title
+
+    )
+
+    obj.put(
+
+        "assetFile",
+
+        bookmark.chapter.assetFile
+
+    )
+
+    obj.put(
+
+        "menuId",
+
+        bookmark.chapter.menuId
+
+    )
+
+    obj.put(
+
+        "timestamp",
+
+        bookmark.timestamp
+
+    )
+
+    array.put(obj)
+
+    preferences.edit()
+
+        .putString(
+
+            "items",
+
+            array.toString()
+
+        )
+
+        .apply()
 
 }
 
-    fun addBookmark(bookmark: Bookmark) {
+   fun getBookmarks(): List<Bookmark> {
 
-        val array = JSONArray(
-            preferences.getString(
-                "items",
-                "[]"
-            )
+    val bookmarks = mutableListOf<Bookmark>()
+
+    val array = JSONArray(
+        preferences.getString("items", "[]")
+    )
+
+    for (i in 0 until array.length()) {
+
+        val obj = array.getJSONObject(i)
+
+        val chapter = Chapter(
+
+            menuId = obj.getInt("menuId"),
+
+            title = obj.getString("title"),
+
+            assetFile = obj.getString("assetFile")
+
         )
 
-        array.put(bookmark.assetFile)
+        bookmarks.add(
 
-        preferences.edit()
-            .putString(
-                "items",
-                array.toString()
+            Bookmark(
+
+                chapter = chapter,
+
+                timestamp = obj.getLong("timestamp")
+
             )
-            .apply()
+
+        )
 
     }
 
-    fun getBookmarks(): List<String> {
+    return bookmarks
 
-        val array = JSONArray(
-            preferences.getString(
-                "items",
-                "[]"
-            )
-        )
+}
+    fun clearBookmarks() {
+
+    preferences.edit()
+
+        .remove("items")
+
+        .apply()
+
+}
 
         val list = mutableListOf<String>()
 
