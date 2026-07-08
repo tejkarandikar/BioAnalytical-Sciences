@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var preferenceManager: PreferenceManager
+    private lateinit var bottomSheetManager: BottomSheetManager
         super.onCreate(savedInstanceState)
         private var currentChapter: Chapter? = null
             override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,6 +75,26 @@ class MainActivity : AppCompatActivity() {
         loadHomePage()
 
         setupBackPressed()
+        bottomSheetManager = BottomSheetManager(
+
+    supportFragmentManager
+
+)
+       enum class BottomSheetType {
+
+    BOOKMARKS,
+
+    HISTORY,
+
+    SEARCH,
+
+    SETTINGS,
+
+    ABOUT,
+
+    PRIVACY
+
+}
        override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
     menuInflater.inflate(R.menu.toolbar_menu, menu)
