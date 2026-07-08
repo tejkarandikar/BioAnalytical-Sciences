@@ -34,5 +34,14 @@
 <string name="no_bookmarks_message">
     Bookmark your favourite chapters to access them quickly.
 </string>
+    <string name="clear_bookmarks_title">Clear Bookmarks</string>
+
+<string name="clear_bookmarks_message">
+Are you sure you want to remove all bookmarks?
+</string>
+
+<string name="yes">Yes</string>
+
+<string name="no">No</string>
 
 </resources>
