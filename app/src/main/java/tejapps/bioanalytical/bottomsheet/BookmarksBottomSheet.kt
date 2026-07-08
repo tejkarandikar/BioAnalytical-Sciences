@@ -9,3 +9,12 @@ class BookmarksBottomSheet :
         R.layout.bottom_sheet_bookmarks
 
     )
+    adapter = BookmarkAdapter(
+
+    bookmarkManager.getBookmarks()
+
+) { bookmark ->
+
+    openChapter(bookmark.chapter)
+
+}
