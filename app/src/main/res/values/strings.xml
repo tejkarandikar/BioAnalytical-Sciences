@@ -27,5 +27,12 @@
 <string name="clear_all_bookmarks">Clear All Bookmarks</string>
 
 <string name="no_bookmarks">No bookmarks available</string>
+    <string name="no_bookmarks">
+    No bookmarks yet
+</string>
+
+<string name="no_bookmarks_message">
+    Bookmark your favourite chapters to access them quickly.
+</string>
 
 </resources>
