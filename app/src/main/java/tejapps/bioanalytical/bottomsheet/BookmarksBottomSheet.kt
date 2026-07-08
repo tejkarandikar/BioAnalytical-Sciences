@@ -9,7 +9,7 @@ import tejapps.bioanalytical.R
 import tejapps.bioanalytical.adapters.BookmarkAdapter
 import tejapps.bioanalytical.managers.BookmarkManager
 import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.appcompat.app.AlertDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class BookmarksBottomSheet(
 
@@ -58,7 +58,7 @@ class BookmarksBottomSheet(
 
     clearButton.setOnClickListener {
 
-    AlertDialog.Builder(requireContext())
+MaterialAlertDialogBuilder(requireContext())
 
         .setTitle(R.string.clear_bookmarks_title)
 
