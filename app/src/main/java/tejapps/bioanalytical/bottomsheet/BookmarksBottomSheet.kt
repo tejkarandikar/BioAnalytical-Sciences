@@ -39,19 +39,36 @@ class BookmarksBottomSheet(
     onBookmarkSelected(bookmark)
 
     dismiss()
+    emptyLayout =
+
+    view.findViewById(
+
+        R.id.layoutEmpty
+
+    )
     
 
 }
 
         recyclerView.adapter = adapter
+        updateEmptyState()
 
         val clearButton = view.findViewById<Button>(R.id.btnClearBookmarks)
 
-        clearButton.setOnClickListener {
+     clearButton.setOnClickListener {
+
+    bookmarkManager.clearBookmarks()
+
+    adapter.submitList(emptyList())
+
+    updateEmptyState()
+
+}
 
             bookmarkManager.clearBookmarks()
 
             adapter.submitList(emptyList())
+            updateEmptyState()
 val swipeHandler =
 
     object : ItemTouchHelper.SimpleCallback(
@@ -114,5 +131,21 @@ ItemTouchHelper(
         }
 
     }
+private fun updateEmptyState() {
 
+    if (adapter.itemCount == 0) {
+
+        recyclerView.visibility = View.GONE
+
+        emptyLayout.visibility = View.VISIBLE
+
+    } else {
+
+        recyclerView.visibility = View.VISIBLE
+
+        emptyLayout.visibility = View.GONE
+
+    }
+
+}
 }
