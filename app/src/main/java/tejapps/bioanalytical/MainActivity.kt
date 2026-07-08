@@ -122,12 +122,15 @@ class MainActivity : AppCompatActivity() {
 
     return when (item.itemId) {
 
-        R.id.action_bookmark -> {
+      bottomSheetManager.showBookmarks(
 
-            addCurrentPageBookmark()
+    bookmarkManager
 
-            true
+) { bookmark ->
 
+    openChapter(bookmark.chapter)
+
+}
         }
 
         R.id.action_share -> {
@@ -238,7 +241,19 @@ class MainActivity : AppCompatActivity() {
     }
 
 )
-    private fun openChapter(chapter: Chapter) {
+   private fun openChapter(
+
+    chapter: Chapter
+
+) {
+
+    webViewManager.loadPage(
+
+        chapter.assetFile
+
+    )
+
+}
 
     webViewManager.loadChapter(chapter)
 
