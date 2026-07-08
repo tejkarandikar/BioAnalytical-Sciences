@@ -101,3 +101,12 @@ object ChapterRepository {
     )
 
 }
+fun getChapterByMenuId(menuId: Int): Chapter? {
+
+    return chapters.find {
+
+        it.menuId == menuId
+
+    }
+
+}
