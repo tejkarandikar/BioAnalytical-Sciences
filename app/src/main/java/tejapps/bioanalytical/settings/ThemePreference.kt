@@ -4,12 +4,17 @@ import android.content.Context
 
 class ThemePreference(context: Context) {
 
-    companion object {
+ companion object {
 
-        private const val KEY_THEME = "theme"
+    const val SYSTEM = "SYSTEM"
 
-    }
+    const val LIGHT = "LIGHT"
 
+    const val DARK = "DARK"
+
+    private const val KEY_THEME = "theme"
+
+}
     private val preferences =
         context.getSharedPreferences(
             PreferenceManager.PREF_NAME,
@@ -28,14 +33,12 @@ class ThemePreference(context: Context) {
 
     fun getTheme(): String {
 
-        return preferences.getString(
+    return preferences.getString(
 
-            KEY_THEME,
+        KEY_THEME,
 
-            "SYSTEM"
+        SYSTEM
 
-        ) ?: "SYSTEM"
-
-    }
-
+    ) ?: SYSTEM
+}
 }
