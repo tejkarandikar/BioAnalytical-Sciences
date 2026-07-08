@@ -1,4 +1,4 @@
-package tejapps.bioanalytical.data
+package tejapps.bioanalytical
 
 import tejapps.bioanalytical.R
 import tejapps.bioanalytical.models.Chapter
@@ -7,105 +7,190 @@ object ChapterRepository {
 
     val chapters = listOf(
 
+           private val analyticalTechniques = listOf(
+
         Chapter(
-            1,
-            "Home",
-            "index.html",
-            R.id.nav_home
+            menuId = R.id.nav_chromatography,
+            title = "Chromatographic Techniques",
+            assetFile = "chromatographic-techniques.html",
+            keywords = listOf(
+                "Chromatography",
+                "HPLC",
+                "UPLC",
+                "GC",
+                "GCMS",
+                "GC-MS",
+                "TLC",
+                "HPTLC",
+                "Column Chromatography"
+            )
         ),
 
         Chapter(
-            2,
-            "Chromatographic Techniques",
-            "chromatographic-techniques.html",
-            R.id.nav_chromatography
+            menuId = R.id.nav_spectroscopy,
+            title = "Spectroscopic Techniques",
+            assetFile = "spectroscopic-techniques.html",
+            keywords = listOf(
+                "UV",
+                "UV-Visible",
+                "FTIR",
+                "IR",
+                "NMR",
+                "AAS",
+                "Atomic Absorption",
+                "Fluorescence"
+            )
         ),
 
         Chapter(
-            3,
-            "Spectroscopic Techniques",
-            "spectroscopic-techniques.html",
-            R.id.nav_spectroscopy
+            menuId = R.id.nav_electrophoresis,
+            title = "Electrophoresis",
+            assetFile = "electrophoresis.html",
+            keywords = listOf(
+                "PAGE",
+                "SDS-PAGE",
+                "Agarose",
+                "Gel Electrophoresis",
+                "Capillary Electrophoresis"
+            )
         ),
 
         Chapter(
-            4,
-            "Electrophoresis",
-            "electrophoresis.html",
-            R.id.nav_electrophoresis
+            menuId = R.id.nav_immunoassays,
+            title = "Immunoassays",
+            assetFile = "immunoassays.html",
+            keywords = listOf(
+                "ELISA",
+                "RIA",
+                "CLIA",
+                "Immunoassay"
+            )
         ),
 
         Chapter(
-            5,
-            "Immunoassays",
-            "immunoassays.html",
-            R.id.nav_immunoassays
+            menuId = R.id.nav_sampleprep,
+            title = "Sample Preparation",
+            assetFile = "sample-preparation.html",
+            keywords = listOf(
+                "SPE",
+                "Solid Phase Extraction",
+                "LLE",
+                "Extraction"
+            )
+        )
+
+               ,
+
+        Chapter(
+            menuId = R.id.nav_pharmacopoeias,
+            title = "Pharmacopoeias",
+            assetFile = "pharmacopoeias.html",
+            keywords = listOf(
+                "IP",
+                "USP",
+                "BP",
+                "EP",
+                "JP"
+            )
         ),
 
         Chapter(
-            6,
-            "Sample Preparation",
-            "sample-preparation.html",
-            R.id.nav_sampleprep
+            menuId = R.id.nav_pkpd,
+            title = "Pharmacokinetics & Pharmacodynamics",
+            assetFile = "pharmacokinetics-pharmacodynamics.html",
+            keywords = listOf(
+                "PK",
+                "PD",
+                "ADME",
+                "Half Life",
+                "Bioavailability"
+            )
         ),
 
         Chapter(
-            7,
-            "Pharmacopoeias",
-            "pharmacopoeias.html",
-            R.id.nav_pharmacopoeias
+            menuId = R.id.nav_ayurveda,
+            title = "Ayurvedic Formulations",
+            assetFile = "ayurvedic-formulations.html",
+            keywords = listOf(
+                "Bhasma",
+                "Churna",
+                "Taila",
+                "Ghrita",
+                "Ayurveda"
+            )
         ),
 
         Chapter(
-            8,
-            "Pharmacokinetics & Pharmacodynamics",
-            "pharmacokinetics-pharmacodynamics.html",
-            R.id.nav_pkpd
-        ),
-
-        Chapter(
-            9,
-            "Ayurvedic Formulations",
-            "ayurvedic-formulations.html",
-            R.id.nav_ayurveda
-        ),
-
-        Chapter(
-            10,
-            "Drugs & Cosmetics Act",
-            "drugs-and-cosmetics-act.html",
-            R.id.nav_drugs
-        ),
-
-        Chapter(
-            11,
-            "About the Author",
-            "about-the-author.html",
-            R.id.nav_author
-        ),
-
-        Chapter(
-            12,
-            "How to Use",
-            "how-to-use.html",
-            R.id.nav_help
-        ),
-
-        Chapter(
-            13,
-            "Privacy Policy",
-            "privacy.html",
-            R.id.nav_privacy
+            menuId = R.id.nav_drugs,
+            title = "Drugs & Cosmetics Act",
+            assetFile = "drugs-and-cosmetics-act.html",
+            keywords = listOf(
+                "Drugs Act",
+                "Schedule M",
+                "Schedule Y",
+                "CDSCO"
+            )
         )
 
     )
+               private val home = listOf(
 
-}
-fun getChapterByMenuId(menuId: Int): Chapter? {
+        Chapter(
 
-    return chapters.find {
+            menuId = R.id.nav_home,
 
-        it.menuId == menuId
+            title = "Home",
+
+            assetFile = "index.html",
+
+            keywords = listOf(
+                "Home",
+                "Welcome"
+            )
+
+        )
+
+    )
+                   val chapters =
+
+        home +
+
+        analyticalTechniques
+            fun getAllChapters(): List<Chapter> = chapters
+
+    fun getChapterByMenuId(menuId: Int): Chapter? {
+
+        return chapters.find {
+
+            it.menuId == menuId
+
+        }
+
+    }
+
+    fun getChapterByAssetFile(assetFile: String): Chapter? {
+
+        return chapters.find {
+
+            it.assetFile == assetFile
+
+        }
+
+    }
+
+    fun search(query: String): List<Chapter> {
+
+        return chapters.filter {
+
+            it.title.contains(query, true) ||
+
+            it.keywords.any { keyword ->
+
+                keyword.contains(query, true)
+
+            }
+
+        }
 
     }
 
