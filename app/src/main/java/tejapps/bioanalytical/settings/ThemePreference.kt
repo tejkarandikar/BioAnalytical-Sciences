@@ -1,22 +1,41 @@
-package tejapps.bioanalytical.settings
+package tejapps.bioanalytical
 
 import android.content.Context
 
 class ThemePreference(context: Context) {
 
+    companion object {
+
+        private const val KEY_THEME = "theme"
+
+    }
+
     private val preferences =
         context.getSharedPreferences(
-            "theme_preferences",
+            PreferenceManager.PREF_NAME,
             Context.MODE_PRIVATE
         )
 
-    fun saveTheme(theme: Int) {
+    fun saveTheme(theme: String) {
+
         preferences.edit()
-            .putInt("theme_mode", theme)
+
+            .putString(KEY_THEME, theme)
+
             .apply()
+
     }
 
-    fun getTheme(): Int {
-        return preferences.getInt("theme_mode", 0)
+    fun getTheme(): String {
+
+        return preferences.getString(
+
+            KEY_THEME,
+
+            "SYSTEM"
+
+        ) ?: "SYSTEM"
+
     }
+
 }
