@@ -8,22 +8,34 @@ import tejapps.bioanalytical.bottomsheet.HistoryBottomSheet
 import tejapps.bioanalytical.bottomsheet.PrivacyBottomSheet
 import tejapps.bioanalytical.bottomsheet.SearchBottomSheet
 import tejapps.bioanalytical.bottomsheet.SettingsBottomSheet
+import tejapps.bioanalytical.bookmark.Bookmark
+import tejapps.bioanalytical.bookmark.BookmarkManager
 class BottomSheetManager(
 
     private val fragmentManager: FragmentManager
 
 ) { 
-  fun showBookmarks() {
+  fun showBookmarks(
 
-    BookmarksBottomSheet()
+    bookmarkManager: BookmarkManager,
 
-        .show(
+    onBookmarkSelected: (Bookmark) -> Unit
 
-            fragmentManager,
+) {
 
-            "BookmarksBottomSheet"
+    BookmarksBottomSheet(
 
-        )
+        bookmarkManager,
+
+        onBookmarkSelected
+
+    ).show(
+
+        fragmentManager,
+
+        "BookmarksBottomSheet"
+
+    )
 
 }
   fun showHistory() {
