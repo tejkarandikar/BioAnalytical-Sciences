@@ -1,8 +1,5 @@
-package tejapps.bioanalytical.search
-
+package tejapps.bioanalytical
 import androidx.appcompat.widget.SearchView
-import tejapps.bioanalytical.models.Chapter
-
 class SearchManager(
 
     private val searchView: SearchView,
@@ -13,32 +10,54 @@ class SearchManager(
 
     fun initialize() {
 
-        searchView.setOnQueryTextListener(
+    searchView.setOnQueryTextListener(
 
-            object : SearchView.OnQueryTextListener {
+        object : SearchView.OnQueryTextListener {
 
-                override fun onQueryTextSubmit(query: String?): Boolean {
+            override fun onQueryTextSubmit(query: String?): Boolean {
 
-                    val results = SearchRepository.search(query ?: "")
+                search(query)
 
-                    onResult(results)
-
-                    return true
-                }
-
-                override fun onQueryTextChange(newText: String?): Boolean {
-
-                    val results = SearchRepository.search(newText ?: "")
-
-                    onResult(results)
-
-                    return true
-                }
+                return true
 
             }
 
-        )
+            override fun onQueryTextChange(newText: String?): Boolean {
+
+                return false
+
+            }
+
+        }
+
+    )
+
+}
+    private fun search(query: String?) {
+
+    if (query.isNullOrBlank()) return
+
+    val chapter = ChapterRepository
+
+        .getAllChapters()
+
+        .firstOrNull {
+
+            it.title.contains(
+
+                query,
+
+                ignoreCase = true
+
+            )
+
+        }
+
+    chapter?.let {
+
+        onChapterSelected(it)
 
     }
 
 }
+    }
