@@ -20,17 +20,17 @@ class HistoryManager(
 
     val history = getHistory().toMutableList()
 
-    // Remove existing occurrence of the same chapter
+
     history.removeAll {
 
         it.chapter.menuId == item.chapter.menuId
 
     }
 
-    // Add the new item at the beginning
+
     history.add(0, item)
 
-    // Keep only the latest 50 items
+    
     if (history.size > 50) {
 
         history.subList(50, history.size).clear()
