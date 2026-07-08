@@ -111,9 +111,7 @@ class BookmarkManager(
     fun clearBookmarks() {
 
     preferences.edit()
-
         .remove("items")
-
         .apply()
 
 }
