@@ -43,5 +43,22 @@ Are you sure you want to remove all bookmarks?
 <string name="yes">Yes</string>
 
 <string name="no">No</string>
+    <string name="history">History</string>
+
+<string name="clear_history">Clear History</string>
+
+<string name="no_history">No history yet</string>
+
+<string name="no_history_message">
+Recently viewed chapters will appear here.
+</string>
+
+<string name="clear_history_title">
+Clear History
+</string>
+
+<string name="clear_history_message">
+Are you sure you want to remove your reading history?
+</string>
 
 </resources>
